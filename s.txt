@@ -1,0 +1,31 @@
+ generateCoins();
+  for(var i = 0 ; i< (coinsGroup).length ;i++){
+    var temp = (coinsGroup).get(i) ;
+    
+    if (temp.isTouching(mario)) {
+      coinSound.play();
+      coinScore++;
+      temp.destroy();
+      temp=null;
+      }
+        
+    }
+
+
+textSize(20);
+  fill("brown")
+  text("Coins Collected: "+ coinScore, 500,50);
+
+
+  function generateCoins()
+{
+  if(frameCount % 50 === 0){
+  var coin = createSprite(800,random(50,400),40,10);
+  coin.addAnimation("coin", coinImage);
+  coin.scale = 0.1;
+  coin.velocityX = -3;
+  
+  coin.lifetime = 1200;
+  coinsGroup.add(coin);
+  }
+}
